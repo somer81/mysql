@@ -1,0 +1,44 @@
+﻿DROP DATABASE VKMYO;
+
+CREATE DATABASE VKMYO
+DEFAULT CHARACTER SET utf8
+DEFAULT COLLATE utf8_general_ci;
+USE VKMYO;
+
+
+
+CREATE TABLE ogrenciler(
+id INT UNSIGNED AUTO_INCREMENT,
+ogrno CHAR(11) NOT NULL,
+ad VARCHAR(50) NOT NULL COLLATE utf8_general_ci,
+soyad VARCHAR(50) NOT NULL COLLATE utf8_general_ci,
+bolum INT,
+PRIMARY KEY(id, ogrno)
+);
+
+CREATE TABLE bolumler(
+id INT UNSIGNED AUTO_INCREMENT,
+bolum VARCHAR(60) NOT NULL,
+aciklama TEXT,
+PRIMARY KEY(id)
+);
+
+INSERT INTO ogrenciler(ogrno,ad,soyad,bolum)
+       VALUES('1214545','Ömer','SEVİNÇ',1),
+             ('454545','Ahmet','TEKİN',1),
+             ('775555','Ayşe','VEKİL',3),
+             ('2565544','Senem','MUTLU',2);
+
+INSERT INTO bolumler(bolum)
+       VALUES('Bilgisayar Programcılığı'),
+             ('Ormancılık'),
+             ('Çocuk Gelişimi');
+
+SELECT * FROM ogrenciler;
+
+SELECT * FROM bolumler;
+
+SELECT ogrno, ad, soyad, b.bolum FROM ogrenciler as o
+       INNER JOIN bolumler as b
+       ON o.bolum = b.id
+
